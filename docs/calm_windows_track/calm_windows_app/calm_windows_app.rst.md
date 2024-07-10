@@ -70,7 +70,7 @@ familiar with basic Calm functionality or have completed the**
 > > -   **Image Type** - ISO Image
 > > -   **Architecture** - X86_64
 > > -   **Source URI** -
-> >     <http://download.microsoft.com/download/7/9/F/79F4584A-A957-436B-8534-3397F33790A6/SQLServer2014SP3-FullSlipstream-x64-ENU.iso>
+> >     http://download.microsoft.com/download/7/9/F/79F4584A-A957-436B-8534-3397F33790A6/SQLServer2014SP3-FullSlipstream-x64-ENU.iso
 > > -   **Product Name** - MSSQL
 > > -   **Product Version** - 2014
 > > -   **Checksum Algorithm** - *Leave blank*
