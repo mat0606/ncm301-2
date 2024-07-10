@@ -196,23 +196,23 @@ In this lab, you will be creating a **Windows 2016** server.
     -   **Categories** - Categories span several different products and solutions within the Nutanix portfolio. They enable you to set security policies, protection policies, alert policies, and playbooks. Simply choose the categories corresponding to the workload, and all of these policies will automatically be
         applied. In this lab however, we're going to leave this field **blank**.
 
-        ![VM Configuration - Boot Configuration, vGPUs, and Categories](images/12_boot_gpu_cat.png)
-
+        ![](images/12_boot_gpu_cat.png)
+        
     -   **NICs** - Network adapters allow communication to and from yourvirtual machine. We\'ll be adding a single NIC by clicking the
         **blue plus**, then selecting **Primary** in the dropdown, and
         selecting the **Dynamic** radio button.
 
-        ![VM Configuration - NICs](images/13_vm_nic.png)
+        ![](images/13_vm_nic.png)
 
     -   **Serial Ports** - Whether or not the VM needs a virtual serial
         port. We\'ll leave the default of **none**.
 
-        ![VM Configuration - Serial Ports](images/14_serial.png)
+        ![](images/14_serial.png)
 
 9.  At the bottom of the page, click the blue **Save** button. It is expected to have a single error about an incorrect macro due to our
     Guest Customization containing "vm_password". If you have additional errors, please be sure to resolve them before continuing to the next section.
 
-    ![Blueprint Save - Error](images/15_error.png)
+    ![](images/15_error.png)    
 
 # Defining Variables
 
@@ -395,7 +395,7 @@ that we can recover from in case something goes wrong.
     and run **systeminfo \| findstr Memory**. Take note of the current
     memory allocated to your VM.
 
-    ![](images/23_windows_memory_before_launch.png)
+    ![](images/23_windows_memory_before.png)
     
 6.  Navigate back to the application page of Calm, and click the
     **Update** button in the upper right. On the page that appears,
