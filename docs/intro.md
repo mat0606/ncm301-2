@@ -101,7 +101,7 @@ PHX Based Clusters:
 - **Username:** PHX-POCxxx-User01 (up to PHX-POCxxx-User20), 
 - **Password:** *Provided by Instructor*
 
-RTP Based Clusters: 
+DM3 Based Clusters: 
 
 - **Username:** RTP-POCxxx-User01 (up to RTP-POCxxx-User20), 
 - **Password:** *Provided by Instructor*
@@ -109,17 +109,6 @@ RTP Based Clusters:
 ### Parallels VDI
 
 PHX Based Clusters Login to: https://phx-ras.xlabs.nutanix.com
-
-DM3 Based Clusters Login to: https://dm3-ras.xlabs.nutanix.com
-
-**Nutanix Employees** - Use your **NUTANIXDC** credentials
-**Non-Employees** - Use **Lab Access User** Credentials
-
-### Employee Pulse Secure VPN
-
-Download the client:
-
-PHX Based Clusters Login to: https://phx-ras.xlabs.nutanix.com>
 
 DM3 Based Clusters Login to: https://dm3-ras.xlabs.nutanix.com
 
