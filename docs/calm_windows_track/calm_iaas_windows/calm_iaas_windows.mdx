@@ -327,7 +327,7 @@ an **Error** state, navigate to the **Audit** tab, and expand the
 Once your application is in a **Running** state, navigate around the
 five tabs in the UI:
 
-![Application Tabs](images/19_app_tabs.png){.align-center}
+![](images/19_app_tabs.png)
 
 -   The **Overview** tab gives you information about any variables
     specified, the cost incurred (showback can be configured in the Calm
@@ -347,7 +347,7 @@ five tabs in the UI:
 Next, view the common VM tasks available in the upper right corner of
 the UI:
 
-![Application Buttons](images/20_app_buttons.png){.align-center}
+![](images/20_app_buttons.png)
 
 -   The **Clone** button allows a user to duplicate the existing
     application into a new app that is manageable separately from the
@@ -376,8 +376,8 @@ that we can recover from in case something goes wrong.
     -   **Snapshot Name** - before-update-@@{calm_time}@@ (leave the
         rest as default)
 
-    ![Application Snapshot](images/21_snapshot.png){.align-center}
-
+    ![](images/21_snapshot.png)
+    
 2.  Click **Save**.
 
 3.  Take note you\'re re-directed to the **Audit** tab. Expand the
@@ -395,8 +395,8 @@ that we can recover from in case something goes wrong.
     and run **systeminfo \| findstr Memory**. Take note of the current
     memory allocated to your VM.
 
-    ![Windows Memory - Before Update](images/23_windows_memory_before.png){.align-center}
-
+    ![](images/23_windows_memory_before_launch.png)
+    
 6.  Navigate back to the application page of Calm, and click the
     **Update** button in the upper right. On the page that appears,
     increase the **Memory (GiB)** field by 2 GiB (For Windows, 8 GiB).
@@ -406,16 +406,16 @@ that we can recover from in case something goes wrong.
 8.  Validate that the memory field has been increased by 2 GiB, and
     click **Confirm**.
 
-    ![Windows Memory - Confirm Change](images/25_windows_confirm.png){.align-center}
-
+    ![](images/25_windows_confirm.png)
+    
 9.  In the **Audit** tab of Calm, wait for the **App Update** action to
     complete.
 
 10. Back in the **VM Console**, run the same command from earlier to
     view the updated memory, and note that it has increased by 2 GiB.
 
-    ![Windows Memory - After Update](images/27_windows_memory_after.png){.align-center}
-
+    ![](images/27_windows_memory_after_launch.png)
+    
     :::note
 
     If anything went wrong with the VM Update, navigate to the **Recovery Points** tab, click **Restore** on the **before-update** snapshot we took earlier, and click **Confirm** on the pop-up.
@@ -440,8 +440,8 @@ Marketplace.
     -   **Initial Version** - 1.0.0
     -   **Description** - (Optional)
 
-    ![Windows Publish Blueprint](images/28_windows_publish_bp.png){.align-center}
-
+    ![](images/28_windows_publish_bp_launch.png)
+    
 4.  Click **Submit for Approval**.
 
     :::note
@@ -488,14 +488,14 @@ Marketplace.
 
 6.  Click **Approve**.
 
-    ![Windows Approve Blueprint](images/29_windows_approve_bp.png){.align-center}
-
+    ![](images/29_windows_approve_bp_launch.png)
+    
 7.  Select **Marketplace Blueprints** at the top of the page, and enter
     your *initials* in the search bar. You should see your blueprint
     listed now, with a Status of **Accepted**.
 
-    ![Windows Marketplace Blueprint](images/30_windows_marketplace_bp.png){.align-center}
-
+    ![](images/30_windows_marketplace_bp_windows_marketplace_bp.png)
+    
 # Launching your Blueprint from the Marketplace
 
 Now that we have published our blueprint to the Marketplace, we need to make an update to our *initials*-Project.
@@ -520,8 +520,8 @@ Now that we have published our blueprint to the Marketplace, we need to make an 
     -   **Password** - Nutanix/4u
     -   Click the **running man** icon above Password box to mark this variable as **runtime**.
 
-    ![Windows Project Credential](images/32_windows_project_creds.png){.align-center}
-
+    ![](images/32_windows_project_creds.png)
+    
 6.  Under **VM Configuration** expand **Windows**, and enter the following:
 
     -   select **NUTANIX**
@@ -533,8 +533,8 @@ Now that we have published our blueprint to the Marketplace, we need to make an 
     -   **NICs** - Click the **blue plus**, then selecting **Primary** in the dropdown, and selecting the **Dynamic** radio button.
     -   **Check log-in upon create** - checked, and **Credential** - Administrator (Defined Above)
 
-    ![Windows Project VM Config](images/33_windows_project_vmconfig.png){.align-center}
-
+    ![](images/33_windows_project_vmconfig.png)
+    
 7.  Click **Save**.
 
 ## Launching the Blueprint from the Marketplace
