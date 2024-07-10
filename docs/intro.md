@@ -88,19 +88,7 @@ The *Cluster Password* is unique to each cluster and will be provided by the lea
 | Controller VM     | nutanix                  | *Cluster Password* |
 | Prism Central VM  | nutanix                  | *Cluster Password* |
 
-Each cluster has a dedicated domain controller VM, **DC**, responsible for providing AD services for the **NTNXLAB.local** domain. The domain is populated with the following Users and Groups:
-
-
-| Group            | Username(s)              | Password |
-|-----------------| ------------------------- |------------|
-| Administrators    | Administrator             | nutanix/4u | 
-| SSP Admins        | adminuser01-adminuser25   | nutanix/4u | 
-| SSP Developers    | devuser01-devuser25       | nutanix/4u | 
-| SSP Consumers     | consumer01-consumer25     | nutanix/4u |
-| SSP Operators     | operator01-operator25     | nutanix/4u |
-| SSP Custom        | custom01-custom25         | nutanix/4u |
-| Bootcamp Users    | user01-user25             | nutanix/4u |
-
+Each cluster has a dedicated domain controller VM, **DC**, responsible for providing AD services for the **NTNXLAB.local** domain. Please request the username and password from the trainer
 
 ## Access Instructions
 
@@ -118,18 +106,11 @@ RTP Based Clusters:
 - **Username:** RTP-POCxxx-User01 (up to RTP-POCxxx-User20), 
 - **Password:** *Provided by Instructor*
 
-### Frame VDI
-
-Login to: <https://console.nutanix.com/x/labs>
-
-**Nutanix Employees** - Use your **NUTANIXDC** credentials
-**Non-Employees** - Use **Lab Access User** Credentials
-
 ### Parallels VDI
 
-PHX Based Clusters Login to: <https://xld-uswest1.nutanix.com>
+PHX Based Clusters Login to: https://phx-ras.xlabs.nutanix.com
 
-RTP Based Clusters Login to: <https://xld-useast1.nutanix.com>
+DM3 Based Clusters Login to: https://dm3-ras.xlabs.nutanix.com
 
 **Nutanix Employees** - Use your **NUTANIXDC** credentials
 **Non-Employees** - Use **Lab Access User** Credentials
@@ -138,26 +119,10 @@ RTP Based Clusters Login to: <https://xld-useast1.nutanix.com>
 
 Download the client:
 
-PHX Based Clusters Login to: <https://xld-uswest1.nutanix.com>
+PHX Based Clusters Login to: https://phx-ras.xlabs.nutanix.com>
 
-RTP Based Clusters Login to: <https://xld-useast1.nutanix.com>
+DM3 Based Clusters Login to: https://dm3-ras.xlabs.nutanix.com
 
 **Nutanix Employees** - Use your **NUTANIXDC** credentials
 **Non-Employees** - Use **Lab Access User** Credentials
-
-Install the client.
-
-In Pulse Secure Client, **Add** a connection:
-
-For PHX:
-
-- **Type** - Policy Secure (UAC) or Connection Server
-- **Name** - X-Labs - PHX
-- **Server URL** - xlv-uswest1.nutanix.com
-
-For RTP:
-
-- **Type** - Policy Secure (UAC) or Connection Server
-- **Name** - X-Labs - RTP
-- **Server URL** - xlv-useast1.nutanix.com
 
