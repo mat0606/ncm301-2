@@ -1,5 +1,5 @@
 ---
-title: "Calm: Windows Workloads"
+title: "NCM Self Service: Windows Workloads"
 ---
 
 *The estimated time to complete this lab is 60 minutes.*
@@ -7,12 +7,12 @@ title: "Calm: Windows Workloads"
 # Overview
 
 **In this exercise you will explore the basics of working with Windows
-workloads in Nutanix Calm by building and deploying a blueprint that
+workloads in Nutanix Cloud Manager (NCM) Self Service by building and deploying a blueprint that
 installs and configures a multi-tier** [bug
 tracker](http://bugnetproject.com/documentation/) **web app using
-Microsoft SQL Server database & IIS webserver. This lab assumes you are
-familiar with basic Calm functionality or have completed the**
-`calm_linux`{.interpreted-text role="ref"} **lab.**
+Microsoft SQL Server database & IIS webserver. 
+
+This lab assumes you are familiar with basic NCM Self Service functionality or have completed the **NCM Self Service Linux lab.**
 
 # Creating the Blueprint
 
