@@ -58,20 +58,20 @@ For example:
 
 Throughout the Workshop there are multiple instances where you will need to substitute *XYZ* with the correct octet for your subnet, for example:
 
-| IP Address     |   Description |
-| -------------- | --------------- |
-| 10.42.*XYZ*.37 |  Nutanix Cluster Virtual IP   |
-| 10.42.*XYZ*.39 |  **PC** VM IP, Prism Central |
-| 10.42.*XYZ*.41  |  **DC** VM IP, NTNXLAB.local Domain Controller   |
+| IP Address     |   Description                                     |
+| -------------- | --------------------------------------------------|
+| 10.42.*XYZ*.37 |  Nutanix Cluster Virtual IP                       |
+| 10.42.*XYZ*.39 |  **PC** VM IP, Prism Central                      |
+| 10.42.*XYZ*.xx  |  **DC** VM IP, NTNXLAB.local Domain Controller   |
 
 
 Each cluster is configured with 2 VLANs which can be used for VMs:
 
 
-|Network Name     | Address             | VLAN    | DHCP Scope|
-|-----------------| ------------------- |-------- | -----------|
-|Primary          | 10.42.*XYZ*.1/25    | 0       | 10.42.*XYZ*.50-10.42.*XYZ*.124|
-|Secondary        | 10.42.*XYZ*.129/25  | *XYZ1*  | 10.42.*XYZ*.132-10.42.*XYZ*.253|
+|Network Name        | Address             | VLAN    | DHCP Scope                     |
+|--------------------| ------------------- |-------- | -------------------------------|
+|Primary_XX          | 10.42.*XYZ*.1/25    | 0       | 10.42.*XYZ*.60-10.42.*XYZ*.120 |
+|Secondary_XX        | 10.42.*XYZ*.129/25  | *XYZ1*  | 10.42.*XYZ*.140-10.42.*XYZ*.253|
 
 ### Credentials
 
