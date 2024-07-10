@@ -103,9 +103,7 @@ This lab assumes you are familiar with basic NCM Self Service functionality or h
 
 # Adding Services
 
-1.  Under **Application Overview \> Services**, click
-    `plus-circle`{.interpreted-text role="fa"} twice to add two new
-    Services.
+1.  Under **Application Overview \> Services**, click "+" twice to add two new services.
 
     ![](images/create_service.png)
 
