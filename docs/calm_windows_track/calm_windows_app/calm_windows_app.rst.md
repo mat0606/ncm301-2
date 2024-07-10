@@ -251,10 +251,6 @@ joined to the domain.
     -   **Task Name** - InitializeDisk1
     -   **Script** -
 
-    ::: {.literalinclude language="posh"}
-    InitializeDisk1.ps1
-    :::
-
     The above script simply performs an initialization and format of the
     extra 100GB VDisk added during VM configuration of the service.
 
@@ -266,10 +262,6 @@ joined to the domain.
     -   **Task Name** - InstallMSSQL
     -   **Script** -
 
-    ::: {.literalinclude language="posh"}
-    InstallMSSQL.ps1
-    :::
-
     Reviewing the above script you can see it is performing an automated
     installation of SQL Server, using the SQL_CRED credential details
     and using the extra 100GB VDisk for the SQL data files.
@@ -280,10 +272,6 @@ joined to the domain.
 
     -   **Task Name** - FirewallRules
     -   **Script** -
-
-    ::: {.literalinclude language="posh"}
-    FirewallRules.ps1
-    :::
 
     Reviewing the above script you can see it is allowing inbound access
     through the Windows Firewall for key SQL services.
@@ -325,10 +313,6 @@ joined to the domain.
     -   **Task Name** - InstallWebPI
     -   **Script** -
 
-    ::: {.literalinclude language="posh"}
-    InstallWebPI.ps1
-    :::
-
     The above script installs the Microsoft Web Platform Installer
     (WebPI), which is used to download, install, and update components
     of the Microsoft Web Platform, including Internet Information
@@ -338,18 +322,10 @@ joined to the domain.
     -   **Task Name** - InstallNetFeatures
     -   **Script** -
 
-    ::: {.literalinclude language="posh"}
-    InstallNetFeatures.ps1
-    :::
-
-    The above script installs .NET Framework 4.5 on the VM.
+   The above script installs .NET Framework 4.5 on the VM.
 
     -   **Task Name** - InstallBugNetApp
     -   **Script** -
-
-    ::: {.literalinclude language="posh"}
-    InstallBugNetApp.ps1
-    :::
 
     The above script uses the Application Profile variables you defined
     at the beginning of the exercise to populate the configuration file
@@ -398,15 +374,9 @@ joined to the domain.
 
 # (Optional) Scale Out IIS Tier
 
-Leveraging the same approach from the `calm_linux`{.interpreted-text
-role="ref"} lab of having multiple web server replicas, can you add a
-CentOS based HAProxy service to this blueprint to allow for load
-balancing across multiple IIS servers?
+Add a CentOS based HAProxy service to this blueprint to allow for load balancing across multiple IIS servers?
 
 # Takeaways
 
--   Calm provides the same application deployment and lifecycle
-    management benefits for Windows workloads as it does for Linux
-    workloads.
--   Calm can natively execute remote PowerShell scripts on Windows
-    endpoints without the need for a Windows-based proxy.
+-   NCM Self Service provides the same application deployment and lifecycle management benefits for Windows     workloads as it does for Linux workloads.
+-   NCM Self Service can natively execute remote PowerShell scripts on Windows endpoints without the need for a Windows-based proxy.
