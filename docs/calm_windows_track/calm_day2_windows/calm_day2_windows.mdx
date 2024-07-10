@@ -1,37 +1,28 @@
 ---
-title: "Calm: Day 2 Operations"
+title: "NCM Self Service: Day 2 Operations"
 ---
 
 # Overview
 
-In the `calm_linux`{.interpreted-text role="ref"} and
-`calm_win`{.interpreted-text role="ref"} labs you explored how Calm can
-be used to model and deploy complex applications using a blueprint.
-Calm, however, it capable of managing applications throughout their
+In the NCM Self Service Linux and Windows labs you explored how NCM Self Service can be used to model and deploy complex applications using a blueprint. Calm, however, it capable of managing applications throughout their
 **entire** lifecycle.
 
-**In this lab you will implement custom actions within Calm to address
-\"Day 2\" operations, including scaling out, scaling in, and upgrading
+**In this lab you will implement custom actions within NCM Self Service to address \"Day 2\" operations, including scaling out, scaling in, and upgrading
 your application.**
 
 # Lab Setup
 
-This lab depends on the availability of a multi-tier **Task Manger** web
-application implemented during the `calm_linux`{.interpreted-text
+This lab depends on the availability of a multi-tier **Task Manger** web application implemented during the `calm_linux`{.interpreted-text
 role="ref"} lab.
 
 # Scaling Out
 
-Imagine you\'re the administrator of the Task Manager application that
-we\'ve been building, and you\'re currently unsure of the amount of
-demand for this application by your end users. Or, potentially, you
-expect the demand to ebb and flow due to the time of the year. How can
+Imagine you\'re the administrator of the Task Manager application that we\'ve been building, and you\'re currently unsure of the amount of
+demand for this application by your end users. Or, potentially, you expect the demand to ebb and flow due to the time of the year. How can
 we easily scale to meet this changing demand?
 
-During the creation of the Task Manager blueprint, the **WebServer**
-service was configured with a minimum number of 2 replicas, with a
-maximum of 4. As a result, Calm will create 2 WebServer VMs during the
-initial deployment. In the event the 2 replicas are not enough to handle
+During the creation of the Task Manager blueprint, the **WebServer** service was configured with a minimum number of 2 replicas, with a
+maximum of 4. As a result, Calm will create 2 WebServer VMs during the initial deployment. In the event the 2 replicas are not enough to handle
 the load of your end users, a **Scale Out** operation is required.
 
 1.  In the **Application Overview \> Application Profile** section,
@@ -60,19 +51,15 @@ the load of your end users, a **Scale Out** operation is required.
     Note
     :::
 
-    The **+ Task** button that appears below the service tile is only
-    used for scaling the number of replicas up and down, so it is
+    The **+ Task** button that appears below the service tile is only used for scaling the number of replicas up and down, so it is
     important to select the correct option.
     :::
 
-    When a user later runs the **Scale Out** task, a new **WebServer**
-    VM will get created, and the **Package Install** tasks for that
-    service will be executed. However, we do need to modify the
-    **HAProxy** configuration in order to start taking advantage of this
+    When a user later runs the **Scale Out** task, a new **WebServer** VM will get created, and the **Package Install** tasks for that
+    service will be executed. However, we do need to modify the **HAProxy** configuration in order to start taking advantage of this
     new web server.
 
-4.  **Within** the **HAProxy** service tile, click the **+ Task**
-    button, then fill out the following fields:
+4.  **Within** the **HAProxy** service tile, click the **+ Task** button, then fill out the following fields:
 
     -   **Task Name** - add_webserver
     -   **Type** - Execute
@@ -93,14 +80,11 @@ the load of your end users, a **Scale Out** operation is required.
     sudo systemctl restart haproxy
     ```
 
-    The script will parse the last IP address in the WebServer address
-    array and append it to the haproxy.cfg file. However, we want to be
-    sure that this doesn\'t happen until **after** the new WebServer is
-    fully up, otherwise the HAProxy server may send requests to a
+    The script will parse the last IP address in the WebServer address array and append it to the haproxy.cfg file. However, we want to be
+    sure that this doesn\'t happen until **after** the new WebServer is fully up, otherwise the HAProxy server may send requests to a
     non-functioning WebServer.
 
-6.  To solve this issue, create an edge to force a dependency on the
-    **web_scale_out** task completing prior to the **add_webserver**
+6.  To solve this issue, create an edge to force a dependency on the **web_scale_out** task completing prior to the **add_webserver**
     task.
 
     Your **Workspace** should now look like this:
@@ -109,16 +93,13 @@ the load of your end users, a **Scale Out** operation is required.
 
 # Scaling In
 
-It\'s the end of your busy season, and you\'d like to optimize your
-resource utilization by scaling back the number of deployed Web Servers.
+It\'s the end of your busy season, and you\'d like to optimize your resource utilization by scaling back the number of deployed Web Servers.
 
-1.  Select `plus-circle`{.interpreted-text role="fa"} to add a custom
-    action named **Scale In** to the Default **Application Profile**.
+1.  Select `plus-circle`{.interpreted-text role="fa"} to add a custom action named **Scale In** to the Default **Application Profile**.
 
     ![](images/510scalein1.png)
 
-2.  **Below** the **WebServer** service tile, click the **+ Task**
-    button to add a scaling task, and fill out the following fields:
+2.  **Below** the **WebServer** service tile, click the **+ Task** button to add a scaling task, and fill out the following fields:
 
     -   **Task Name** - web_scale_in
     -   **Scaling Type** - Scale In
@@ -126,10 +107,8 @@ resource utilization by scaling back the number of deployed Web Servers.
 
     ![](images/510scalein2.png)
 
-    When a user later runs the **Scale In** task, the last **WebServer**
-    replica will have its **Package Uninstall** task run, the VM will be
-    shut down, and then deleted, which will reclaim resources. However,
-    we do need to modify the **HAProxy** configuration to ensure that
+    When a user later runs the **Scale In** task, the last **WebServer** replica will have its **Package Uninstall** task run, the VM will be
+    shut down, and then deleted, which will reclaim resources. However, we do need to modify the **HAProxy** configuration to ensure that
     we\'re no longer sending traffic to the to-be-deleted Web Server.
 
 3.  **Within** the **HAProxy** service tile, click the **+ Task**
