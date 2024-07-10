@@ -205,9 +205,7 @@ This lab assumes you are familiar with basic NCM Self Service functionality or h
     hosts.
     :::
 
-    Similar to the Task Manager application in the
-    `calm_linux`{.interpreted-text role="ref"} lab, you want to ensure
-    the database is available prior to the IIS web server setup.
+    You want to ensure the database is available prior to the IIS web server setup.
 
 3.  In the Blueprint Editor, select the **MSIIS** service and create a
     dependency on the **MSSQL** service.
