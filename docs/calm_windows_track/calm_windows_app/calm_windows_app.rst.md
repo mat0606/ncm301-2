@@ -185,9 +185,9 @@ This lab assumes you are familiar with basic NCM Self Service functionality or h
     Take a minute to review the Sysprep script, a short description
     follows after.
 
-    ::: {.literalinclude language="xml"}
-    Sysprep-unattended.xml
-    :::
+ #   ::: {.literalinclude language="xml"}
+ #   Sysprep-unattended.xml
+ #   :::
 
     You can see the VMs being configured to autologon to the local
     Administrator account using the WIN_VM_CRED password. While this
