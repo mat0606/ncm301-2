@@ -58,8 +58,8 @@ In this lab, you will be creating a **CentOS 7** Linux server.
     -   **Description** - Something descriptive of your choice
     -   **Project** - *Initials*-Project
 
-    ![CentOS 7 Blueprint Settings](images/2_centos_1.png)
-
+    ![](images/2_centos_1.png)
+    
 5.  Click **VM Details** to proceed to the next step.
 
 6.  Note the following fields on the **VM Details** page:
@@ -68,10 +68,10 @@ In this lab, you will be creating a **CentOS 7** Linux server.
     -   **Cloud** - The cloud we're deploying the infrastructure on **Nutanix**.
     -   **Operating System** - The type of OS we're deploying. It should be left as Linux if you're using CentOS 7, or changed to Windows if using Windows 2016.
 
-    ![CentOS 7 VM Details](images/4_centos_2.png){.align-center}
-
-    ![Windows 2016 VM Details](images/5_windows_2.png){.align-center}
-
+    ![](images/4_centos_2.png)
+    
+    ![](images/5_windows_2.png)
+    
 7.  Click **VM Configuration** to proceed to the next step.
 
 8.  On this page, we'll be specifying a variety of settings for our infrastructure.
@@ -82,19 +82,19 @@ In this lab, you will be creating a **CentOS 7** Linux server.
     -   **Cores per vCPU** - 1
     -   **Memory (GiB)** - 4 (Mark this field as **runtime**.)
 
-    ![CentOS 7 VM Configuration - General Configuration](images/6_centos_3.png)
+    ![](images/6_centos_3.png)
 
     -   **Guest Customization** - Guest customization allows for the modification of certain settings at boot. Linux OSes use ``Cloud Init``, while Windows OSs use ``Sysprep``. 
         Select the **Guest Customization**, and then paste in the following script.
 
         -   CentOS 7
 
-            
+          
             cloud-init.sh
             :::
 
-            ![CentOS 7 Cloud Init](images/8_centos_4.png){.align-center}
-
+            ![](images/8_centos_4.png)
+            
         ::: note
         ::: title
         Note
@@ -132,9 +132,9 @@ In this lab, you will be creating a **CentOS 7** Linux server.
             bootable. A minimum of one disk *must* be bootable. In our
             case, leave it **enabled**.
 
-        ![CentOS 7 VM Configuration - Disks](images/10_centos_5.png){.align-center}
+        ![](images/10_centos_5.png)
 
-    -   **Boot Configuration** - The boot method of the VM. We\'ll leave
+        -   **Boot Configuration** - The boot method of the VM. We\'ll leave
         the default of **Legacy BIOS**.
 
     -   **vGPUs** - Whether or not the VM needs a virtual graphical
@@ -148,19 +148,19 @@ In this lab, you will be creating a **CentOS 7** Linux server.
         applied. In this lab however, we\'re going to leave this field
         **blank**.
 
-    ![VM Configuration - Boot Configuration, vGPUs, and Categories](images/12_boot_gpu_cat.png){.align-center}
+    ![](images/12_boot_gpu_cat.png)
 
     -   **NICs** - Network adapters allow communication to and from your
         virtual machine. We\'ll be adding a single NIC by clicking the
         **blue plus**, then selecting **Primary** in the dropdown, and
         selecting the **Dynamic** radio button.
-
-    ![VM Configuration - NICs](images/13_vm_nic.png){.align-center}
+    
+    ![](images/13_vm_nic.png)
 
     -   **Serial Ports** - Whether or not the VM needs a virtual serial
         port. We\'ll leave the default of **none**.
 
-    ![VM Configuration - Serial Ports](images/14_serial.png){.align-center}
+    ![](images/14_serial.png)
 
 9.  At the bottom of the page, click the blue **Save** button. It is
     expected to have a single error about an incorrect macro due to our
@@ -168,29 +168,21 @@ In this lab, you will be creating a **CentOS 7** Linux server.
     additional errors, please be sure to resolve them before continuing
     to the next section.
 
-    ![Blueprint Save - Error](images/15_error.png){.align-center}
-
+    ![](images/15_error.png)
+    
 # Defining Variables
 
-Variables allow extensibility of Blueprints, meaning a single Blueprint
-can be used for multiple purposes and environments depending on the
-configuration of its variables. Variables can either be static values
-saved as part of the Blueprint or they can be specified at **Runtime**
+Variables allow extensibility of Blueprints, meaning a single Blueprint can be used for multiple purposes and environments depending on the
+configuration of its variables. Variables can either be static values saved as part of the Blueprint or they can be specified at **Runtime**
 (when the Blueprint is launched), as they will in this case.
 
-In a Single VM blueprint, variables can be accessed by clicking the
-**App variables** button near the top. By default, variables are stored
-as a **String**, however additional **Data Types** (Integer, Multi-line
-String, Date, Time, and Date Time) are all possible. Any of these data
-types can be optionally set as **Secret**, which will mask its value and
-is ideal for variables such as passwords. There are also more advanced
-**Input Types** (versus the default **Simple**), however these are
-outside the scope of this lab.
+In a Single VM blueprint, variables can be accessed by clicking the **App variables** button near the top. By default, variables are stored
+as a **String**, however additional **Data Types** (Integer, Multi-line String, Date, Time, and Date Time) are all possible. Any of these data
+types can be optionally set as **Secret**, which will mask its value and is ideal for variables such as passwords. There are also more advanced
+**Input Types** (versus the default **Simple**), however these are outside the scope of this lab.
 
-Variables can be used in scripts executed against objects using the
-**@@{variable_name}@@** construct (called a macro). Calm will expand and
-replace the variable with the appropriate value before sending to the
-VM.
+Variables can be used in scripts executed against objects using the **@@{variable_name}@@** construct (called a macro). Calm will expand and
+replace the variable with the appropriate value before sending to the VM.
 
 1.  Click the **App variables** button along the top pane to bring up
     the variables menu.
@@ -231,8 +223,8 @@ VM.
 
     -   Leave the other two checkboxes unselected.
 
-        ![Variable - vm_password](images/16_variable.png){.align-center}
-
+        ![](images/16_variable.png)
+        
 3.  Scroll to the bottom, and click the blue **Done** button.
 
 4.  Click **Save**. It is expected to receive a **Warning** stating that
@@ -244,8 +236,8 @@ VM.
     warning, or a red error, please resolve the issue before continuing
     on.
 
-    ![Blueprint Save - Warning](images/17_warning.png){.align-center}
-
+    ![](images/17_warning.png)
+    
 # Launching the Blueprint
 
 Now that our blueprint is complete, take note of the buttons to the
@@ -269,7 +261,7 @@ right of the save button:
     > -   **Name of the Application** - *initials*-CentOS-IaaS
     > -   **vm_password** - Nutanix/4u
 
-![Blueprint Launch](images/18_launch.png){.align-center}
+![](images/18_launch.png)
 
 1.  Click **Create**, where you\'ll be redirectly the application page.
 
@@ -283,7 +275,7 @@ an **Error** state, navigate to the **Audit** tab, and expand the
 Once your application is in a **Running** state, navigate around the
 five tabs in the UI:
 
-![Application Tabs](images/19_app_tabs.png){.align-center}
+![](images/19_app_tabs.png)
 
 -   The **Overview** tab gives you information about any variables
     specified, the cost incurred (showback can be configured in the Calm
@@ -303,7 +295,7 @@ five tabs in the UI:
 Next, view the common VM tasks available in the upper right corner of
 the UI:
 
-![Application Buttons](images/20_app_buttons.png){.align-center}
+![](images/20_app_buttons.png)
 
 -   The **Clone** button allows a user to duplicate the existing
     application into a new app that is manageable separately from the
@@ -331,8 +323,8 @@ that we can recover from in case something goes wrong.
 
     -   **Snapshot Name** - before-update-@@{calm_time}@@ (leave the
         rest as default)
-
-    ![Application Snapshot](images/21_snapshot.png){.align-center}
+    
+    ![](images/21_snapshot.png)
 
 2.  Click **Save**.
 
@@ -350,7 +342,7 @@ that we can recover from in case something goes wrong.
 5.  To view the current memory on CentOS, run the command **free -h**.
     Take note of the current memory allocated to your VM.
 
-    ![CentOS Memory - Before Update](images/22_centos_memory_before.png){.align-center}
+    ![](images/22_centos_memory_before.png)
 
 6.  Navigate back to the application page of Calm, and click the
     **Update** button in the upper right. On the page that appears,
@@ -360,14 +352,14 @@ that we can recover from in case something goes wrong.
 
 8.  Validate that the memory field has been increased by 2 GiB, and click **Confirm**.
 
-    ![CentOS Memory - Confirm Change](images/24_centos_confirm.png){.align-center}
+    ![](images/24_centos_confirm.png)
 
 9.  In the **Audit** tab of Calm, wait for the **App Update** action to
     complete.
 
 10. Back in the **VM Console**, run the same command from earlier to view the updated memory, and note that it has increased by 2 GiB.
 
-    ![CentOS Memory - After Update](images/26_centos_memory_after.png){.align-center}
+    ![](images/26_centos_memory_after.png)
 
 If anything went wrong with the VM Update, navigate to the **Recovery
 Points** tab, click **Restore** on the **before-update** snapshot we
@@ -375,8 +367,7 @@ took earlier, and click **Confirm** on the pop-up.
 
 # Adding your Blueprints to the Marketplace
 
-Now that we know we have a good blueprint, lets publish it to he
-Marketplace.
+Now that we know we have a good blueprint, lets publish it to the Marketplace.
 
 ## Publishing the Blueprint
 
@@ -391,8 +382,8 @@ Marketplace.
     -   **Initial Version** - 1.0.0
     -   **Description** - (Optional)
 
-    ![CentOS Publish Blueprint](images/28_centos_publish_bp.png){.align-center}
-
+    ![](images/28_centos_publish_bp.png)
+    
 4.  Click **Submit for Approval**.
 
     :::note
@@ -439,13 +430,13 @@ Marketplace.
 
 6.  Click **Approve**.
 
-    ![CentOS Approve Blueprint](images/29_centos_approve_bp.png){.align-center}
+    ![](images/29_centos_approve_bp.png)
 
 7.  Select **Marketplace Blueprints** at the top of the page, and enter
     your *initials* in the search bar. You should see your blueprint
     listed now, with a Status of **Accepted**.
 
-    ![CentOS Marketplace Blueprint](images/30_centos_marketplace_bp.png){.align-center}
+    ![](images/30_centos_marketplace_bp.png)
 
 # Launching your Blueprint from the Marketplace
 
@@ -464,8 +455,7 @@ make an update to our *initials*-Project.
 
 4.  Select the **Environment** tab.
 
-5.  Under **Credential**, click `plus-circle`{.interpreted-text
-    role="fa"} and enter the following:
+5.  Under **Credential**, click **+** and enter the following:
 
     -   **Credential Name** - CENTOS
     -   **Username** - centos
@@ -474,8 +464,8 @@ make an update to our *initials*-Project.
     -   Click the **running man** icon above Password box to mark this
         variable as **runtime**.
 
-    ![CentOS Project Credential](images/32_centos_project_creds.png){.align-center}
-
+    ![](images/32_centos_project_creds.png)
+    
 6.  Under **VM Configuration** expand **Linux**, and enter the
     following:
 
@@ -491,7 +481,7 @@ make an update to our *initials*-Project.
     -   **Check log-in upon create** - checked, and **Credential** -
         CENTOS (Defined Above)
 
-    ![CentOS Project VM Config](images/33_centos_project_vmconfig.png){.align-center}
+    ![](images/33_centos_project_vmconfig.png)
 
 7.  Click **Save**.
 
@@ -507,7 +497,7 @@ make an update to our *initials*-Project.
 3.  Select your *intials***\_CentOS_IaaS** blueprint, and click
     **Launch** from the Marletplace.
 
-    ![CentOS Marketplace Launch Blueprint](images/31_centos_marketplace_launch_bp.png){.align-center}
+    ![](images/31_centos_marketplace_launch_bp.png)
 
 4.  Select your *initials***-Project** from the **Projects** dropdown.
 
@@ -522,16 +512,11 @@ make an update to our *initials*-Project.
 
 # Takeaways
 
-What are the key things you should know about **Nutanix Calm** and
-**Single VM Blueprints**?
+What are the key things you should know about **NCM Self Service** and  **Single VM Blueprints**?
 
--   Nutanix Calm provides application and infrastructure automation
-    natively within Prism, turning complex, week long ticketing
+-   NCM Self Service provides application and infrastructure automation natively within Prism, turning complex, week long ticketing
     processes, into one-click self service provisioning.
--   While Multi VM blueprints enable the provisioning and lifecycle
-    management of complex, multi-tiered applications, Single VM
-    blueprints allows IT to provide Infrastructure-as-a-Service for
-    their end users.
--   Common day 2 operations, like snapshotting, restoring, cloning, and
-    updating the infrastructure can all be done by end users directly
+-   While Multi VM blueprints enable the provisioning and lifecycle management of complex, multi-tiered applications, Single VM
+    blueprints allows IT to provide Infrastructure-as-a-Service for their end users.
+-   Common day 2 operations, like snapshotting, restoring, cloning, and updating the infrastructure can all be done by end users directly
     within Calm.
