@@ -10,13 +10,25 @@ integrated into the Nutanix platform, NCM Self Service delivers a powerful, comm
 management framework that can be simultaneously leveraged by multiple IT
 teams to rapidly create and deliver applications.
 
+This picture shows a logical cloud architecture which is platform agnostic.  AWS Public Cloud is an example where
+the following services are available for developer consumption.  Nutanix uses the logical cloud architecture to bring the
+following services across hybrid/multi-clouds providers. 
+ 
+- EC2 or VM as a service
+- ECS or Container as a service
+- EKS or Kubernetes as a service
+- EFS or File as a service
+- S3 or Object as a service
+- RDS or Database as a service
+- VPC or Virtual Private Cloud as a service
+
 ![](images/Logical-Cloud-Architecture.png)
 
 NCM Self Service allows IT to expose the underlying infrastructure across multiple
 clouds as services the development and the business team can consume
 easily.
 
-![](images/Logical-Cloud-Architecture.png)
+![](images/Self-Service-Multi-Cloud.pptx.png))
 
 ## What is a Blueprints
 
@@ -50,7 +62,22 @@ Blueprint allows the designer to make sense of complexity using visual GUI inter
 
 ![](images/what_is_calm_10.png)
 
+## Single VM Blueprint
 
+A single-VM blueprint is a framework that you can use to create and provision an instance and launch apps that require only one virtual machine.
+This model of consumption is very similar to public cloud consumption.
+
+## Multi-VM Blueprint
+
+A multi-VM blueprint is a framework that you can use to create an instance, provision, and launch apps that require multiple VMs.
+
+![](images/Multi-VM-Blueprint.png)
+
+# What is a Runbook
+
+Blueprint describes all elements of an applications.  Runbook describes a series of tasks to be executed across endpoints.  
+Both physical server or virtual machine with a network IP address is considered an endpoint.  Runbook can traverse across
+applications.  Runbooks can be hooked to a scheduler to be executed on a regular basis.
 
 # NCM Self Service: Self-Service and Governance
 
@@ -58,7 +85,7 @@ Blueprint allows the designer to make sense of complexity using visual GUI inter
 
 -   One-Click App Provisioning
 -   Pre-integrated blueprints
--   Self-service based onuser role and group
+-   Self-service based on user role and group
 
 ![](images/what_is_calm_11.png)
 
