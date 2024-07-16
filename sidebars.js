@@ -38,6 +38,9 @@ module.exports = {
       label: 'NCM Self Service 101',
       items: ['what_is_calm/what_is_calm',
               'calm_project/calm_project',
+              'what_is_calm/blueprint',
+              'what_is_calm/runbook',
+              
              ],
     },
   ],
