@@ -114,9 +114,9 @@ DM3 Based Clusters:
 
 ### Parallels VDI
 
-PHX Based Clusters Login to: <https://xld-uswest1.nutanix.com>
+PHX Based Clusters Login to: https://xld-uswest1.nutanix.com
 
-DM3 Based Clusters Login to: <https://dm3-ras.xlabs.nutanix.com>
+DM3 Based Clusters Login to: https://dm3-ras.xlabs.nutanix.com
 
 **Nutanix Employees** - Use your **NUTANIXDC** credentials
 **Non-Employees** - Use **Lab Access User** Credentials
