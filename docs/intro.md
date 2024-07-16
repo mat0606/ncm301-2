@@ -68,8 +68,8 @@ Each cluster is configured with 2 VLANs which can be used for VMs:
 
 |Network Name        | Address             | VLAN    | DHCP Scope |
 |------------------- | ------------------- |-------- | -----------|
-|Primary_xx          | 10.42.*XYZ*.1/25    | 0       | 10.42.*XYZ*.50-10.42.*XYZ*.124|
-|Secondary_xx        | 10.42.*XYZ*.129/25  | *XYZ1*  | 10.42.*XYZ*.132-10.42.*XYZ*.253|
+|Primary_xx          | 10.55.*XYZ*.1/25    | 0       | 10.55.*XYZ*.50-10.55.*XYZ*.124|
+|Secondary_xx        | 10.55.*XYZ*.129/25  | *XYZ1*  | 10.55.*XYZ*.132-10.55.*XYZ*.253|
 
 ### Credentials
 
@@ -79,12 +79,11 @@ The *Cluster Password* is unique to each cluster and will be provided by the lea
 
 :::
 
-| Credential        | Username                 | Password           |
-|------------------ |------------------------- |--------------------|
-| Prism Element     | admin                    | *Cluster Password* |
-| Prism Central     | admin                    | *Cluster Password* |
-| Controller VM     | nutanix                  | *Cluster Password* |
-| Prism Central VM  | nutanix                  | *Cluster Password* |
+| Credential        | Username                 | Password             |
+|------------------ |------------------------- |--------------------  |
+| Prism Element     | admin                    | *Cluster Password*   |
+| Prism Central     | admin                    | *Cluster Password*   |
+| Calm VM           | admin                    | *Cluster Password*   |
 
 Each cluster has a dedicated domain controller VM, **DC**, responsible for providing AD services for the **NTNXLAB.local** domain. The domain is populated with the following Users and Groups:
 
