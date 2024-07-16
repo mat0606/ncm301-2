@@ -39,6 +39,25 @@ module.exports = {
       label: 'NCM Self Service 101',
       items: ['what_is_calm/what_is_calm',
               'calm_project/calm_project',
+              'calm_marketplace/calm_marketplace',
+              'calm_linux_track/calm_linux_app/calm_linux_app',
+              'calm_windows_ad/calm_windows_ad'
+               ],
+    },
+    {
+      type: 'category',
+      label: 'NCM Self Service 201',
+      items: ['calm_linux_track/calm_day2_linux/calm_day2_linux',
+              'calm_escript/calm_escript',
+              'calm_aws/calm_aws'
+             ],
+    },
+    {
+      type: 'category',
+      label: 'NCM Self Service 301',
+      items: ['calm_api/calm_api',
+              'calm_dsl/calm_dsl',
+              'calm_vpc/calm_vpc'
              ],
     },
   ],
