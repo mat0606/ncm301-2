@@ -33,7 +33,6 @@
 //export default sidebars;
 module.exports = {
   tutorialSidebar:[
-    "intro",
     {
       type: 'category',
       label: 'NCM Self Service 101',
