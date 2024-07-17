@@ -42,7 +42,7 @@ module.exports = {
               'what_is_calm/blueprint',
               'what_is_calm/application',
               'what_is_calm/runbook',
-              'calm_marketplace/calm_marketplace',
+              'ncm_marketplace2/ncm_marketplace2',
             ],
     },
   ],

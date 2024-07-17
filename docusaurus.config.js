@@ -47,13 +47,6 @@ const config = {
           editUrl:
             'https://github.com/mat0606/ncm301-2/edit/main',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -67,7 +60,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'NCM Self Service Bootcamp',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
