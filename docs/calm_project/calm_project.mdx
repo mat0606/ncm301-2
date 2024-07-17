@@ -31,25 +31,65 @@ Project is the logical construct that allowed an administrator to assign both in
 
     ![](images/Create-Project-1.png)
 
-3.  This project is in the **Pending** state.  Click on **Infrastructure**
+3.  This project is in the **Pending** state.  
 
     ![](images/Create-Project-2.png)
 
+## Role Based Access in Project
+
+Both configurations (NCM Self Service VM and NCM Self Service in Prism Central) leverages on the built in roles provided in Prism Central.  These are 
+the specific role available for NCM Self Service
+
+     ![](images/rbac-1.png)
+
+## Create user in Project
+
+1.  Click on **Users and Groups**
+
+    ![](images/Create-User-1.png)
+
+2.  Click on **Add/Edit Users and Groups**
+
+    ![](images/Create-User-2.png)
+
+3.  Click on **+ Add User** 
+
+    ![](images/Create-User-3.png)
+
+4.  Fill in the following.  Replace **XYZ** with your trainee no
+
+    Name: tenant**XYZ**projadm
+    Role: Project Admin
+
+    ![](images/Create-User-4.png)
+
+5.  Add another user.  Replace **XYZ** with your trainee no
+
+    Name: tenant**XYZ**developer
+    Role: Developer
+
+    ![](images/Create-User-5.png)
+
+6.  Click on **Save Users and Project**
+
+
 ## Add Infrastructure in Project
 
-1.  Click on **Add Infrastructure**. Select **NTNX_LOCAL_AZ_xx** as assigned by the trainer
+1.  Click on **Infrastructure**.  
+
+2. Click on **Add Infrastructure**. Select **NTNX_LOCAL_AZ_xx** as assigned by the trainer
 
     ![](images/Create-Project-3.png)
 
-2.  Click on **Configure Resources**. 
+3.  Click on **Configure Resources**. 
 
     ![](images/Create-Project-4.png)
 
-3.  Click on **Select Cluster**.  Click on **Select VLANs**
+4.  Click on **Select Cluster**.  Click on **Select VLANs**
 
     ![](images/Create-Project-5.png)
 
-4.  Check on **Primary_xx** or **Secondary_xx** Network as assigned by the trainer.  
+5.  Check on **Primary_xx** or **Secondary_xx** Network as assigned by the trainer.  
 
     ![](images/Create-Project-6.png)
 
