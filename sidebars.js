@@ -40,6 +40,7 @@ module.exports = {
               'calm_project/calm_project',
               'calm_project/calm_environment',
               'what_is_calm/blueprint',
+              'what_is_calm/application',
               'what_is_calm/runbook',
             ],
     },
