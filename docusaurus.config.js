@@ -59,8 +59,18 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+        },
+      },
+      colorMode: {
+        // defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
       navbar: {
-        title: 'NCM Self Service Bootcamp',
+        title: '',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -72,7 +82,6 @@ const config = {
             position: 'left',
             label: 'NCM Self Service Bootcamp',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/mat0606/ncm301-2',
             label: 'GitHub',
