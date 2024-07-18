@@ -258,73 +258,21 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
     ![](images/Add-Join-Domain-Action-1.png)
 
+2.  Fill in the action name on the right side of the screen.  Click on the **+ Task** button.
 
-2. Click on the **+ Task** button, and fill out the following fields on the **Configuration Panel** on the right:
+    ![](images/Add-Join-Domain-Action-2.png)
 
-   -   **Name Task** - JointoDomain
-   -   **Type** - Execute
-   -   **Script Type** - Powershell
-   -   **Credential** - WIN_VM_CRED
+3.  Fill in the following fields on the **Configuration Panel** on the right:
 
-   
+   -  **Name Task** - Set Host Name
+   -  **Type** - Execute
+   -  **Script Type** - Powershell
+   -  **Endpoint** - Leave it empty
+   -  **Credential** - WIN_VM_CRED
 
-4.  Copy and paste the following script into the **Script** field:
+    ![](images/Add-Join-Domain-Action-3.png)
 
-    ```powershell
-    $HOSTNAME = "Win-@@{calm_unique}@@"
-
-    function Set-Hostname{
-    [CmdletBinding()]
-    Param(
-        [parameter(Mandatory=$true)]
-        [string]$Hostname
-    )
-    if ($Hostname -eq  $(hostname)){
-        Write-Host "Hostname already set."
-    } else{
-        Rename-Computer -NewName $HOSTNAME -ErrorAction Stop
-    }
-    }
-
-    function JointoDomain {
-    [CmdletBinding()]
-    Param(
-        [parameter(Mandatory=$true)]
-        [string]$DomainName,
-        [parameter(Mandatory=$false)]
-        [string]$OU,
-        [parameter(Mandatory=$true)]
-        [string]$Username,
-        [parameter(Mandatory=$true)]
-        [string]$Password,
-        [parameter(Mandatory=$true)]
-        [string]$Server
-    )
-    $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
-    $adapter | Set-DnsClientServerAddress -ServerAddresses $Server
-
-    if ($env:computername  -eq $env:userdomain) {
-        Write-Host "Not in domain"
-        $adminname = "$DomainName\$Username"
-        $adminpassword = ConvertTo-SecureString -asPlainText -Force -String "$Password"
-        Write-Host "$adminname , $password"
-        $credential = New-Object System.Management.Automation.PSCredential($adminname,$adminpassword)
-        Add-computer -DomainName $DomainName -Credential $credential -force -Options JoinWithNewName,AccountCreate -PassThru -ErrorAction Stop
-    } else {
-        Write-Host "Already in domain"
-    }
-    }
-
-    if ($HOSTNAME -ne $Null){
-    Write-Host "Setting Hostname"
-    Set-Hostname -Hostname $HOSTNAME
-    }
-
-    JointoDomain -DomainName "@@{DOMAIN_NAME}@@" -Username "@@{DOMAIN_CRED.username}@@" -Password "@@{DOMAIN_CRED.secret}@@" -Server "@@{AD}@@"
-
-    Restart-Computer -Force -AsJob
-    exit 0
-    ```
+4.  Copy and Paste it in the script section.
 
     :::note
 
@@ -332,56 +280,176 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
     :::
 
-## Package Uninstall
-
-1.  Select the Windows service icon in the workspace window again and
-    scroll to the top of the **Configuration Panel**, click **Package**.
-
-    
-
-    -   **Click** - Configure Uninstall
-    -   **Click** - + Task
-    -   **Name Task** - RemoveDomain
-    -   **Type** - Execute
-    -   **Script Type** - Powershell
-    -   **Credential** - WIN_VM_CRED
-
-2.  Copy and paste the following script into the **Script** field:
-
     ```powershell
-    $HOSTNAME = "Win-@@{calm_unique}@@"
+    $HOSTNAME = "@@{name}@@"
 
-    function RemoveFromDomain {
-    [CmdletBinding()]
-    Param(
-        [parameter(Mandatory=$true)]
-        [string]$DomainName,
-        [parameter(Mandatory=$false)]
-        [string]$OU,
-        [parameter(Mandatory=$true)]
-        [string]$Username,
-        [parameter(Mandatory=$true)]
-        [string]$Password,
-    )
-    $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
-    $adapter | Set-DnsClientServerAddress -ServerAddresses $Server
-
-    $adminname = "$DomainName\$Username"
-    $adminpassword = ConvertTo-SecureString -asPlainText -Force -String "$Password"
-    Write-Host "$adminname , $password"
-    $credential = New-Object System.Management.Automation.PSCredential($adminname,$adminpassword)
-    Remove-computer -UnjoinDomaincredential $credential -PassThru -Verbose -Force
-    Write-Host "Removed from domain @@{DOMAIN_NAME}@@"
+    function Set-Hostname{
+        [CmdletBinding()]
+        Param(
+            [parameter(Mandatory=$true)]
+            [string]$Hostname
+        )
+        if ($Hostname -eq  $(hostname)){
+            Write-Host "Hostname already set."
+        } else{
+            Rename-Computer -NewName $HOSTNAME -ErrorAction Stop
+        }
     }
 
-    RemoveFromDomain -DomainName "@@{DOMAIN_NAME}@@" -Username "@@{DOMAIN_CRED.username}@@" -Password "@@{DOMAIN_CRED.secret}@@"
+    if ($HOSTNAME -ne $Null){
+        Write-Host "Setting Hostname"
+        Set-Hostname -Hostname $HOSTNAME
+    }
+
+    Restart-Computer -Force -AsJob
+    exit 0
     ```
 
-    :::note
+5.  Fill in the following fields on the **Configuration Panel** on the right:
+
+    -  **Name Task** - Delay for 2 min
+    -  **Type** - Delay
+    -  **Sleep Interval** - 120
+
+    ![](images/Add-Join-Domain-Action-4.png)
+
+6.  Fill in the following fields on the **Configuration Panel** on the right:
+
+   -   **Name Task** - Join AD Domain
+   -   **Type** - Execute
+   -   **Script Type** - Powershell
+   -   **Endpoint** - Leave it empty
+   -   **Credential** - WIN_VM_CRED
+
+    ![](images/Add-Join-Domain-Action-5.png)
+
+ 7.  Copy and paste the following script into the **Script** field:
+
+    ```powershell
+    function JointoDomain {
+        [CmdletBinding()]
+        Param(
+            [parameter(Mandatory=$true)]
+            [string]$DomainName,
+            [parameter(Mandatory=$false)]
+            [string]$OU,
+            [parameter(Mandatory=$true)]
+            [string]$Username,
+            [parameter(Mandatory=$true)]
+            [string]$Password,
+            [parameter(Mandatory=$true)]
+            [string]$Server
+        )
+        $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
+        $adapter | Set-DnsClientServerAddress -ServerAddresses $Server
+
+        if ($env:computername  -eq $env:userdomain) {
+            Write-Host "Not in domain"
+            $adminname = "$DomainName\$Username"
+            $adminpassword = ConvertTo-SecureString -asPlainText -Force -String "$Password"
+            Write-Host "$adminname , $password"
+            $credential = New-Object System.Management.Automation.PSCredential($adminname,$adminpassword)
+            Add-computer -DomainName $DomainName -Credential $credential -force -Options JoinWithNewName,AccountCreate -PassThru -ErrorAction Stop
+        } else {
+            Write-Host "Already in domain"
+        }
+    }
+
+    JointoDomain -DomainName "@@{DOMAIN_NAME}@@" -Username "@@{DOMAIN_CRED.username}@@" -Password "@@{DOMAIN_CRED.secret}@@" -Server "@@{AD}@@"
+    ```
+
+# Join Action to Package Install
+
+1.  Expand on **Package**.  Click on **Install**.  Click on **+ Action**
+
+    ![](images/Add-Join-Domain-Action-6.png)
+
+2.  Fill in the following:
+
+    - **Task Name** Join AD Domain
+    - **Service/VM action** Join AD Domain
+
+    ![](images/Add-Join-Domain-Action-7.png)
+
+# Unjoin AD Domain
+
+1.  Click on **+** to add a service action
+
+    ![](images/Add-UnJoin-Domain-Action-1.png)
+
+2.  Fill in the action name: **Unjoin AD Domain**
+
+    ![](images/Add-UnJoin-Domain-Action-2.png)
+
+3.  Click on **+ Task**
+
+    - **Task Name:** Unjoin AD Domain
+    - **Type:** Execute
+    - **Script Type:** Powershell
+    - **Endpoint:** Leave it empty
+    - **Credential:** WIN_VM_CRED
+
+    ![](images/Add-UnJoin-Domain-Action-3.png)  
+
+4.  Copy and paste the following script into the **Script** field:
+
+    :note
 
     This script contains a function which removes the computer from the domain, utilizing the DOMAIN_CRED credentials that we defined earlier.
 
     :::
+
+    ```powershell
+    $HOSTNAME = "@@{name}@@"
+
+    function RemoveFromDomain {
+        [CmdletBinding()]
+        Param(
+            [parameter(Mandatory=$true)]
+            [string]$DomainName,
+            [parameter(Mandatory=$false)]
+            [string]$OU,
+            [parameter(Mandatory=$true)]
+            [string]$Username,
+            [parameter(Mandatory=$true)]
+            [string]$Password
+        )
+        $adapter = Get-NetAdapter | ? {$_.Status -eq "up"}
+        $adapter | Set-DnsClientServerAddress -ServerAddresses $Server
+
+        $adminname = "$DomainName\$Username"
+        $adminpassword = ConvertTo-SecureString -asPlainText -Force -String "$Password"
+        Write-Host "$adminname , $adminpassword"
+        $credential = New-Object System.Management.Automation.PSCredential($adminname,$adminpassword)
+        Remove-computer -UnjoinDomaincredential $credential -PassThru -Verbose -Force
+        Write-Host "Removed from domain @@{DOMAIN_NAME}@@"
+    }
+
+    RemoveFromDomain -DomainName "@@{DOMAIN_NAME}@@" -Username "@@{DOMAIN_CRED.username}@@" -Password "@@{DOMAIN_CRED.secret}@@"
+    Restart-Computer -Force -AsJob
+    exit 0
+    ```
+
+5.  Click on **+ Add Task**.  Fill in the following:
+
+    - **Task Name:** Delay for 2 minutes
+    - **Type:** Delay
+    - **Sleep Interval:** 120
+
+    ![](images/Add-UnJoin-Domain-Action-8.png)  
+
+# Join action to Package Uninstall
+
+1. Expand on **Package**.  Click on **Uninstall**
+
+    ![](images/Add-UnJoin-Domain-Action-4.png)  
+
+2. Click on **+ Action**.  Fill in the following:
+
+    **Task Name:** Unjoin AD Domain
+    **Service/VM Actions:** Unjoin AD Domain
+
+    ![](images/Add-UnJoin-Domain-Action-5.png)  
 
 3.  Click **Save**. You will be prompted with specific errors if there
     are validation issues such as missing fields or unacceptable
