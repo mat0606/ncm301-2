@@ -2,20 +2,28 @@
 title: "Windows Workloads"
 ---
 
+# Product Configurations:
+
+1.  Calm VM 3.7.2.1 on PC2024.1
+2.  Infrastructure cluster on AOS 6.8.0.5 on PC2024.1.01
+
 # Overview
 
 :::info
 
 Estimated time to complete: **45 minutes**
 
-In this exercise you will create a Nutanix Calm Blueprint based on a Microsoft Windows 2016 image. The image will be sysprepped with an
+In this exercise you will create a NCM Self Service Blueprint based on a Microsoft Windows 2022 image. The image will be sysprepped with an
 unattended XML answer file, and then will be added to a Domain using Powershell script. We'll also add a script to remove the computer from the Domain upon deletion.
 
 :::
 
 ## Creating Blueprint
 
-1.  From **Prism Central > Calm**, select **Blueprints** from the sidebar and click **+ Create Application Blueprint**, choose **Multi VM/Pod Blueprint**.
+1.  From **Prism Central > Calm**, 
+
+
+select **Blueprints** from the sidebar and click **+ Create Application Blueprint**, choose **Multi VM/Pod Blueprint**.
 
 2.  Specify **Windows-INITIALS** in the **Blueprint Name** field. Enter a **Windows 2016 added to AD** in the Description field Select the project created earlier from the **Project** drop down menu and click **Proceed**.
 

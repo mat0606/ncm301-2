@@ -43,7 +43,7 @@ module.exports = {
               'what_is_calm/application',
               'what_is_calm/runbook',
               'ncm_marketplace2/ncm_marketplace2',
-              'calm_windows_ad/calm_windows_ad',
+              'ncm_windows_ad/ncm_windows_ad',
             ],
     },
   ],
