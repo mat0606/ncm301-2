@@ -266,7 +266,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
    -   **Script Type** - Powershell
    -   **Credential** - WIN_VM_CRED
 
-   ![](images/windows5.png)
+   
 
 4.  Copy and paste the following script into the **Script** field:
 
@@ -397,7 +397,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
 3.  Click **Deploy**
 
-    ![](images/launch-blueprint.png)
+   
 
     You will be taken directly to the **Applications** page to monitor the provisioning of your Blueprint.
 
@@ -406,7 +406,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
     Note the status changes to **Running** after the Blueprint has been successfully provisioned.
 
-    ![](images/windows6.png)
+   
 
 ## Verification
 
@@ -414,20 +414,20 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
 2.  Click on **Windows - JoinDomain**. Verify the powershell script was executed successfully
 
-    ![](images/windows62.png)
+  
 
 3.  Click on the **Services** tab, then select the **WindowsAD** service. Note down the IP address.
 
-    ![](images/windows7.png)
+
 
 4.  Open a Remote Desktop to connect to the provisioned VM.
 
-    ![](images/windows8.png)
+  
 
 5.  Select the **Control Panel**. Select **System and Security**. Select
     **System**
     
-    ![](images/windows9.png)
+    
 
 At this point you are welcome to run the **Delete** action to clean up your application and underlying VM. Alternatively, you could run the
 **Soft Delete** action, which deletes the application from Calm's point of view, but **leaves** the underlying VM(s) up and running. This is useful when the VM will be used and managed perpetually by an end user,
