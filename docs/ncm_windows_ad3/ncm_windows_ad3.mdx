@@ -725,7 +725,7 @@ multi-cloud deployment.
 
 ## Configure Un-join AD Domain for Medium Application Profile
 
- 1.  Click on **Configure Uninstall**
+1.  Click on **Configure Uninstall**
 
     ![](images/medium_package_2.png)
 
@@ -737,5 +737,48 @@ multi-cloud deployment.
     ![](images/medium_add_action_unjoin_ad.png)
 
 
+## Launch Blueprint for Medium Application Profile
 
+1.  From the toolbar at the top of the Blueprint Editor, click **Launch**.
+
+    ![](images/Launch_BP-1.png)  
+
+2.  Fill in the following:
+
+    -  **Application Name** -  Specify a unique name (e.g. Windows-*INITIALS*-1)
+    -  **Project** - Select the project
+    -  **Environment** - Select the Environment
+
+    ![](images/Launch-App-1.png)  
+
+3.  Select the **Application Profile**: **Medium**
+
+    ![](images/Launch-Medium-1.png)  
+
+4.  Verify the VM sizing.  
+
+    ![](images/Launch-Medium-2.png) 
+
+5.  Verify the credential for the **DOMAIN_CRED**.  Click on **Deploy**
+
+    ![](images/Launch-App-3-2.png) 
+
+5.  Click on **View in Admin Center**
+
+    ![](images/Launch-App-4.png) 
+
+6.  The application is in the **Provisioning** state
+
+    ![](images/Launch-App-5.png) 
+
+## Verify the provisioning of the Medium Application Profile
+
+1.  Click on the **Audit** tab. Observe the **Windows - Provision Nutanix** and **Check Login** is going to take
+an estimated 2 minutes.
+
+    ![](images/Launch-App-7.png) 
+
+2.  Click on **Windows - Package Install**. Click on **Windows - JoinDomain**. Verify the powershell script was executed successfully
+
+    ![](images/Launch-App-8.png) 
 
