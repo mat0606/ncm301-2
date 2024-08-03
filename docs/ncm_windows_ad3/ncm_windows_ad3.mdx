@@ -565,4 +565,139 @@ multi-cloud deployment.
 
     ![](images/medium_profile_domain_variable.png)  
 
+## Configure Service in Application Profile: Medium
 
+1.  Select the following:
+
+    - **Account**
+    - **Operating System**:  Windows
+    - **Cluster**
+
+    ![](images/medium_service_1.png) 
+
+2.  Scroll down. Fill out the following fields:
+
+    - **VM Name** - ``W@@{calm_time}@@``
+    - **vCPU** - 4 - Check the running man
+    - **Cores Per CPU** - 1 - Check the running man
+    - **Memory** - 4 - Check the running man
+    - **VM Power State** - On
+
+    ![](images/medium_service_2.png) 
+
+3.  Scroll down.  Check the **Guest Customization**
+
+    - **Type** - Sysprep
+    - **Install Type** - Prepared
+    - **Script** - Paste the sysprep script
+
+    ![](images/guest_customization_1.png)
+
+ 4.  Paste the sysprep script    
+    
+    :::note
+
+    This Unattended XML answer file will set some basic computer information such as hostname and organization, configure the Administrator password to our WIN_VM_CRED secret, open Powershell port 5985 in the firewall, and enable remote Powershell functionality.
+    
+    :::
+
+    ``` xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <unattend xmlns="urn:schemas-microsoft-com:unattend">
+        <settings pass="specialize">
+            <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+                <ComputerName>@@{name}@@</ComputerName>
+                <RegisteredOrganization>Nutanix</RegisteredOrganization>
+                <RegisteredOwner>Acropolis</RegisteredOwner>
+                <TimeZone>UTC</TimeZone>
+            </component>
+            <component xmlns="" name="Microsoft-Windows-TerminalServices-LocalSessionManager" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="amd64">
+                <fDenyTSConnections>false</fDenyTSConnections>
+            </component>
+            <component xmlns="" name="Microsoft-Windows-TerminalServices-RDP-WinStationExtensions" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="amd64">
+                <UserAuthentication>0</UserAuthentication>
+            </component>
+            <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Networking-MPSSVC-Svc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+                <FirewallGroups>
+                    <FirewallGroup wcm:action="add" wcm:keyValue="RemoteDesktop">
+                        <Active>true</Active>
+                        <Profile>all</Profile>
+                        <Group>@FirewallAPI.dll,-28752</Group>
+                    </FirewallGroup>
+                </FirewallGroups>
+            </component>
+        </settings>
+        <settings pass="oobeSystem">
+            <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+                <UserAccounts>
+                    <AdministratorPassword>
+                        <Value>@@{WIN_VM_CRED.secret}@@</Value>
+                        <PlainText>true</PlainText>
+                    </AdministratorPassword>
+                </UserAccounts>
+                <AutoLogon>
+                    <Password>
+                        <Value>@@{WIN_VM_CRED.secret}@@</Value>
+                        <PlainText>true</PlainText>
+                    </Password>
+                    <Enabled>true</Enabled>
+                    <Username>Administrator</Username>
+                </AutoLogon>
+                <FirstLogonCommands>
+                    <SynchronousCommand wcm:action="add">
+                        <CommandLine>cmd.exe /c netsh firewall add portopening TCP 5985 "Port 5985"</CommandLine>
+                        <Description>Win RM port open</Description>
+                        <Order>1</Order>
+                        <RequiresUserInput>true</RequiresUserInput>
+                    </SynchronousCommand>
+                    <SynchronousCommand wcm:action="add">
+                        <CommandLine>powershell -Command "Enable-PSRemoting -SkipNetworkProfileCheck -Force"</CommandLine>
+                        <Description>Enable PS-Remoting</Description>
+                        <Order>2</Order>
+                        <RequiresUserInput>true</RequiresUserInput>
+                    </SynchronousCommand>
+                    <SynchronousCommand wcm:action="add">
+                        <CommandLine>powershell -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned"</CommandLine>
+                        <Description>Enable Remote-Signing</Description>
+                        <Order>3</Order>
+                        <RequiresUserInput>false</RequiresUserInput>
+                    </SynchronousCommand>
+                </FirstLogonCommands>
+                <OOBE>
+                    <HideEULAPage>true</HideEULAPage>
+                    <SkipMachineOOBE>true</SkipMachineOOBE>
+                </OOBE>
+            </component>
+            <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+                <InputLocale>en-US</InputLocale>
+                <SystemLocale>en-US</SystemLocale>
+                <UILanguageFallback>en-us</UILanguageFallback>
+                <UILanguage>en-US</UILanguage>
+                <UserLocale>en-US</UserLocale>
+            </component>
+        </settings>
+    </unattend>
+    ```
+5.  Scroll down.  Select the following:
+
+   -   **Device Type** - Disk
+   -   **Device Bus** - SCSI
+   -   **Operation** - Clone from Image Service
+   -   **Image** - windows-server-2022-calm-template-qcow2
+   -   **Boot Configuration** - Legacy BIOS
+
+    ![](images/Add-Service-5.png)
+
+6.  Scroll down.  Select ``+`` sign on **Network Adapters (NICs)**
+
+    -   **NIC 1** - Primary_xxx
+    -   **Private IP**: Dynamic
+
+     ![](images/Add-Service-6.png)
+
+7.  Scroll down.  Select **WIN_VM_CRED** and leave the rest of the field as default
+
+    ![](images/Add-Service-7.png)
+
+8.  Click **Save** and ensure no errors or warnings pop-up. If they do,
+    resolve the issue, and **Save** again.
