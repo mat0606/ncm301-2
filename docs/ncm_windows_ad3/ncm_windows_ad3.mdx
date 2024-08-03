@@ -1,5 +1,5 @@
 ---
-title: "Windows Workloads"
+title: "Windows Workload: Multi-VM Blueprint"
 ---
 
 # Product Configurations:
@@ -542,6 +542,10 @@ an estimated 2 minutes.
 
     ![](images/Verify-VM-4.png) 
 
+8.  Click on **Delete** to delete the application
+
+    ![](images/delete_app.png) 
+
 # Create Application Profile: Medium
 
 1.  This section of the lab helps you to understand the use of application profile to provide T-Shirt sizing or 
@@ -767,18 +771,18 @@ multi-cloud deployment.
 
     ![](images/Launch-App-4.png) 
 
-6.  The application is in the **Provisioning** state
-
-    ![](images/Launch-App-5.png) 
-
 ## Verify the provisioning of the Medium Application Profile
 
-1.  Click on the **Audit** tab. Observe the **Windows - Provision Nutanix** and **Check Login** is going to take
+1.  Observe the application was in **Running** state
+
+    ![](images/Launch-App-10.png) 
+
+2.  Click on the **Audit** tab. Observe the **Windows - Provision Nutanix** and **Check Login** is going to take
 an estimated 2 minutes.
 
     ![](images/Launch-App-7.png) 
 
-2.  Click on **Windows - Package Install**. Click on **Windows - JoinDomain**. Verify the powershell script was executed successfully
+3.  Click on **Windows - Package Install**. Click on **Windows - JoinDomain**. Verify the powershell script was executed successfully
 
     ![](images/Launch-App-8.png) 
 
