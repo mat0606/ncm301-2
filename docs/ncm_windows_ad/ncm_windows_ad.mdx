@@ -11,7 +11,7 @@ title: "Windows Workloads"
 
 :::info
 
-Estimated time to complete: **60 minutes**
+Estimated time to complete: **90 minutes**
 
 In this exercise you will create a NCM Self Service Blueprint with T-Shirt sizing (Small, Medium, Large).
 The image (Windows Server 2022) will be sysprepped with an unattended XML answer file, and then will be added 
@@ -270,17 +270,20 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 4.  Click **Save** and ensure no errors or warnings pop-up. If they do,
     resolve the issue, and **Save** again.
 
-# Create action to join Active Directory Domain
+## Create action to join Active Directory Domain
 
-1. Click on the **+** on the left side of the screen
+1. The purpose of action is create a set of re-usable tasks across different packages in different application 
+profiles.
+
+2.  Click on the **+** on the left side of the screen
 
     ![](images/Add-Join-Domain-Action-1.png)
 
-2.  Fill in the action name on the right side of the screen.  Click on the **+ Task** button.
+3.  Fill in the action name on the right side of the screen.  Click on the **+ Task** button.
 
     ![](images/Add-Join-Domain-Action-2.png)
 
-3.  Fill in the following fields on the **Configuration Panel** on the right:
+4.  Fill in the following fields on the **Configuration Panel** on the right:
 
    -  **Name Task** - Set Host Name
    -  **Type** - Execute
@@ -290,7 +293,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
     ![](images/Add-Join-Domain-Action-3.png)
 
-4.  Copy and Paste it in the script section.
+5.  Copy and Paste it in the script section.
 
     :::note
 
@@ -319,19 +322,21 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
         Set-Hostname -Hostname $HOSTNAME
     }
 
-    Restart-Computer -Force -AsJob
     exit 0
     ```
 
-5.  Fill in the following fields on the **Configuration Panel** on the right:
+6.  Add an action to restart the VM.  Click on **+ Action**
 
-    -  **Name Task** - Delay for 2 min
-    -  **Type** - Delay
-    -  **Sleep Interval** - 120
+    ![](images/vm-restart-1.png)
 
-    ![](images/Add-Join-Domain-Action-4.png)
+7.  Fill in the following:
 
-6.  Fill in the following fields on the **Configuration Panel** on the right:
+    -  **Name Action** - Restart the VM
+    -  **Service/VM action** - Restart
+
+     ![](images/vm-restart-2.png)
+
+8.  Fill in the following fields on the **Configuration Panel** on the right:
 
    -   **Name Task** - Join AD Domain
    -   **Type** - Execute
@@ -341,7 +346,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
     ![](images/Add-Join-Domain-Action-5.png)
 
- 7.  Copy and paste the following script into the **Script** field:
+ 8.  Copy and paste the following script into the **Script** field:
 
     ```powershell
     function JointoDomain {
@@ -376,7 +381,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
     JointoDomain -DomainName "@@{DOMAIN_NAME}@@" -Username "@@{DOMAIN_CRED.username}@@" -Password "@@{DOMAIN_CRED.secret}@@" -Server "@@{AD}@@"
     ```
 
-# Join Action to Package Install
+## Join **Join AD Domain** Action to Package Install
 
 1.  Expand on **Package**.  Click on **Install**.  Click on **+ Action**
 
@@ -389,7 +394,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
     ![](images/Add-Join-Domain-Action-7.png)
 
-# Unjoin AD Domain
+## Create an action to **Unjoin AD Domain**
 
 1.  Click on **+** to add a service action
 
@@ -411,7 +416,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
 4.  Copy and paste the following script into the **Script** field:
 
-    :note
+    :::note
 
     This script contains a function which removes the computer from the domain, utilizing the DOMAIN_CRED credentials that we defined earlier.
 
@@ -444,19 +449,18 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
     }
 
     RemoveFromDomain -DomainName "@@{DOMAIN_NAME}@@" -Username "@@{DOMAIN_CRED.username}@@" -Password "@@{DOMAIN_CRED.secret}@@"
-    Restart-Computer -Force -AsJob
     exit 0
     ```
 
-5.  Click on **+ Add Task**.  Fill in the following:
+5.  Click on **+ Add Action**.  Fill in the following:
 
-    - **Task Name:** Delay for 2 minutes
-    - **Type:** Delay
-    - **Sleep Interval:** 120
+    - **Action Name:** Restart the VM
+    - **Service/VM action** - Restart
 
-    ![](images/Add-UnJoin-Domain-Action-8.png)  
+    ![](images/vm-restart-2.png)
+ 
 
-# Join action to Package Uninstall
+## Join **Unjoin AD Domain** action to Package Uninstall
 
 1. Expand on **Package**.  Click on **Uninstall**
 
