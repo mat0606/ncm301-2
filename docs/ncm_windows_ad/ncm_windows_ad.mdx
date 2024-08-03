@@ -11,16 +11,21 @@ title: "Windows Workloads"
 
 :::info
 
-Estimated time to complete: **45 minutes**
+Estimated time to complete: **60 minutes**
 
-In this exercise you will create a NCM Self Service Blueprint based on a Microsoft Windows 2022 image. The image will be sysprepped with an
-unattended XML answer file, and then will be added to a Domain using Powershell script. We'll also add a script to remove the computer from the Domain upon deletion.
+In this exercise you will create a NCM Self Service Blueprint with T-Shirt sizing (Small, Medium, Large).
+The image (Windows Server 2022) will be sysprepped with an unattended XML answer file, and then will be added 
+to a Domain using Powershell script.  We'll also add a script to remove the computer from the Domain upon deletion.
 
 :::
 
-## Creating Blueprint
+# Creating Blueprint
 
-1.  Click on hamburger menu.  Select **Self Service**
+1.  Login using the Blueprint Designer.
+
+    ![](images/login-bp-designer.png)
+
+2.  Click on hamburger menu.  Select **Self Service**
 
     ![](images/AppSwitcher-Self-Service.png)
 
@@ -53,22 +58,19 @@ specific environment in the marketplace launch.  An example is
 
 2.  Click on > ``+`` sign to create the **WIN_VM_CRED** credentials:
 
-    :::
-
     -   **Credential Name** - WIN_VM_CRED
     -   **Username** - Administrator
     -   **Secret** - Password
-    -   **Password** - Get the password from the trainer
+    -   **Password** - Get the password from the trainer.  **Check the running man to allow changing of password during launch**
 
     ![](images/Create-Credential-2.png)
 
 3.  Click on > ``+`` sign to create the **DOMAIN_CRED** credentials to store the credential to the Active Directory
 
-    :::
     -   **Credential Name** - DOMAIN_CRED
     -   **Username** - Administrator
     -   **Secret** - Password
-    -   **Password** - Get the password from the trainer
+    -   **Password** - Get the password from the trainer.  **Check the running man to allow changing of password during launch**
 
     ![](images/Create-Credential-3.png)
 
@@ -78,7 +80,20 @@ specific environment in the marketplace launch.  An example is
 
 5.  Click on **Back**.
 
-# Setting Variables
+# Application Profile
+
+The purpose of the application profile is to allow the Blueprint Designer to configure T-Shirt sizing 
+(Small, Medium or Large) or different cloud provider (Nutanix, VMware, AWS, Azure or GCP).
+
+1.  On the left side of the screen, click on **Application Profile**.  Click on **Default**
+
+    ![](images/app_profile_1.png)
+
+2.  On the right side of the screen, change from **Default** to **Small**
+
+    ![](images/app_profile_2.png)
+
+## Setting Variables for the **Small** Application Profile
 
 Variables improve the extensibility of Blueprints. For this Blueprint, we'll want to define the domain name that the Windows VM will join to,
 and the IP of the Active Directory server. We'll leave the **Secret** variables **un-checked**.
@@ -102,7 +117,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
 5.  Click **Save** on the top right of the screen
 
-## Adding Windows Service
+# Adding Windows Service
 
 :::note
  
@@ -110,7 +125,7 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
 
 :::
 
-1.  Click on **+**
+1.  On the left side of the screen, click on **+**
 
     ![](images/Add-Service-1.png)
 
@@ -144,12 +159,15 @@ and the IP of the Active Directory server. We'll leave the **Secret** variables 
     - **Install Type** - Prepared
     - **Script** - Paste the sysprep script
 
+    ![](images/guest_customization_1.png)
+
+ 6.  Paste the sysprep script    
+    
     :::note
 
     This Unattended XML answer file will set some basic computer information such as hostname and organization, configure the Administrator password to our WIN_VM_CRED secret, open Powershell port 5985 in the firewall, and enable remote Powershell functionality.
     
     :::
-
 
     ``` xml
     <?xml version="1.0" encoding="UTF-8"?>
