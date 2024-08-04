@@ -1,0 +1,76 @@
+---
+title: "Windows Workload: Publish Blueprint to Marketplace"
+---
+
+# Product Configurations:
+
+1.  Calm VM 3.8.0 on PC2024.1
+2.  Infrastructure cluster on AOS 6.8.0.5 on PC2024.1.01
+
+# Overview
+
+:::info
+
+Estimated time to complete: **90 minutes**
+
+Publishing the blueprint to the Marketplace marked a logical milestone of the blueprint development lifecycle. 
+The marketplace blueprint undergoes an approval process.  An user with self service admin role can approve the 
+marketplac blueprint.  Once approved, it is ready in the production for users to consume.
+
+:::
+
+# Publish Blueprint to Marketplace
+
+1.  Login as the Blueprint Designer
+
+    ![](images/login-bp-designer.png)
+
+2.  Click on hamburger menu.  Select **Self Service**
+
+    ![](images/AppSwitcher-Self-Service.png)
+
+3.  Drill into the **Windows** blueprint created earlier.
+
+    ![](images/blueprint_list.png)
+
+4.  Click on **Publish**
+
+    ![](images/publish_blueprint_1.png)
+
+5.  Fill in the following.  Click on **Submit for Approval**
+
+    - **Name**: Tenant<Initial>-Windows-2022
+    - **Publish with secret**: checked
+    - **Initial version**: 1.0
+    - **Picture**: Optional
+
+     ![](images/publish_blueprint_2.png)
+
+# Approve blueprint in Marketplace Manager
+
+1.  Login as Self Service Admin
+
+    ![](images/sspadmin_1.png)
+
+2.  Click on hamburger menu.  Select **Self Service**
+
+    ![](images/AppSwitcher-Self-Service.png)
+
+3.  Click on **Marketplace Manager**
+
+    ![](images/sspadmin_2.png)
+
+4.  Click on **Approval Pending**
+
+    ![](images/sspadmin_3.png)
+
+5.  Drill into the Marketplace name
+
+    ![](images/sspadmin_4.png)
+
+6.  Choose the following:
+
+    - **Category**: BI-Productivity
+    - **Project shared with**: **Choose your own project**
+
+    ![](images/sspadmin_5.png)
