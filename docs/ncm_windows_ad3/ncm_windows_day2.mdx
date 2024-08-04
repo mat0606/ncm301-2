@@ -14,7 +14,8 @@ title: "Windows Workload: Day 2 Operation"
 Estimated time to complete: **45 minutes**
 
 In this exercise you will modify an existing NCM Self Service Blueprint to allow the developer to change VM specification
-and take or restore snapshot
+and take or restore snapshot in a multi-vm blueprint.  Changing VM specification and create image is built in for 
+Single VM Blueprint and Application.
 
 :::
 
@@ -86,5 +87,63 @@ and take or restore snapshot
 
     ![](images/change_vm_spec_4.png) 
 
+# Configure Blueprint to take and restore snapshot
 
+## Configure Replicas to the Windows VM
+
+1.  The purpose of creating the replicas is to showcase the ability to create vm snapshots on multiple VM in 
+the application.
+
+2.  Navigate to the Windows blueprint created earlier.
+
+3.  Click on **Service**
+
+    ![](images/replicas_1.png) 
+
+4.  Change the **default**, **Min** & **Max** as shown in the picture
+
+    ![](images/replicas_2.png) 
+
+
+## Configure Snapshot/Restore of the Windows VM
+
+1.  On the left hand of the screen, click on **+** at **Snapshot/Restore**.
+
+    ![](images/vm_snapshot_1.png) 
+
+2.  Fill in the following as shown in the picture
+
+    ![](images/vm_snapshot_2.png) 
+
+## Launch Blueprint to verify VM Snapshot and Restore
+
+1.  On the top right of the screen, click on **Launch**
+
+    ![](images/Launch_BP-1.png)  
+
+2.  .  Fill in the following:
+
+    -  **Application Name** -  Specify a unique name (e.g. Windows-*INITIALS*-1)
+    -  **Project** - Select the project
+    -  **Environment** - Select the Environment
+
+    ![](images/Launch-App-1.png)  
+
+3.  Select the **Application Profile**: **Small**
+
+    ![](images/Launch-App-2.png)  
+
+4.  Verify the VM sizing.  
+
+    ![](images/Launch-App-3.png) 
+
+5.  Verify the credential for the **DOMAIN_CRED**.  Click on **Deploy**
+
+    ![](images/Launch-App-3-2.png) 
+
+5.  Click on **View in Admin Center**
+
+    ![](images/Launch-App-4.png) 
+
+6.  Wait till the application is in the **Running** state. 
 
