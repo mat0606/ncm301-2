@@ -1,0 +1,64 @@
+---
+title: "Linux Workload: Multi-VM Blueprint"
+---
+
+# Product Configurations:
+
+1.  Calm VM 3.8.0 on PC2024.1
+2.  Infrastructure cluster on AOS 6.8.0.5 on PC2024.1.01
+
+# Overview
+
+:::info
+
+Estimated time to complete: **90 minutes**
+
+In this exercise you will create a NCM Self Service Blueprint with T-Shirt sizing (Small, Medium, Large).
+The image (Rocky Linux 9.4), install cloud-init, install packages and join Active Directory (AD) domain.
+  We'll also add a script to remove the computer from the Domain upon deletion.
+
+:::
+
+# Creating Blueprint
+
+1.  Login using the Blueprint Designer.
+
+    ![](images/login-bp-designer.png)
+
+2.  Click on hamburger menu.  Select **Self Service**
+
+    ![](images/AppSwitcher-Self-Service.png)
+
+2.  Click on **Blueprints** from the sidebar and click **+ Create Blueprint**, choose **Single VM Blueprint**.
+
+    ![](images/ncm_linux_ad_1.png)
+
+3. Fill in the following.  Click on **VM Details**
+
+    -  **Name:** Tenant**XYZ**_Rocky_AD  Replace XYZ with your assigned trainee no
+   
+    ![](images/ncm_linux_ad_2.png)
+
+4.  Replace the **VM Name** to **RockyVM**.  Click on **VM Configuration**
+
+    ![](images/ncm_linux_ad_3.png)
+
+5.  Select the cluster
+
+    ![](images/ncm_linux_ad_4.png)
+
+6.  Fill in the following:
+
+    -  **VM Name**: ``r-@@{calm_time}@@``
+    -  **vCPU**: 2 - Check the running man
+    -  **core per CPU**: 1 - Check the running man
+    -  **Memory (GIB)**: 2 - Check the running man
+    -  **VM Power State**: On
+
+     ![](images/ncm_linux_ad_5.png)
+
+7.  Check the **Guest Customization**.  Paste the contents inside the Guest Customization box.
+
+    cloud-init.sh
+
+    ![](images/ncm_linux_ad_6.png)
