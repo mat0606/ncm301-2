@@ -133,17 +133,80 @@ the application.
 
     ![](images/Launch-App-2.png)  
 
-4.  Verify the VM sizing.  
+4.  Scroll down.  Verify the VM sizing.  
 
     ![](images/Launch-App-3.png) 
 
-5.  Verify the credential for the **DOMAIN_CRED**.  Click on **Deploy**
+5.  Scroll down.  Verify the credential for the **DOMAIN_CRED**.  
 
     ![](images/Launch-App-3-2.png) 
 
-5.  Click on **View in Admin Center**
+6.  Scroll down.  Verify the Snapshot Policy for the project.
+
+    ![](images/Launch_Snapshot.png) 
+
+7.  Click on **View in Admin Center**
 
     ![](images/Launch-App-4.png) 
 
-6.  Wait till the application is in the **Running** state. 
+8.  Wait till the application is in the **Running** state. 
 
+## Verify Creation of Snapshot
+
+1.  Click on **Manage**
+
+    ![](images/snapshot_1.png) 
+
+2.  Click on **Snapshot_vm_snapshot**
+
+    ![](images/snapshot_2.png) 
+
+3.  Click on **Run**
+
+    ![](images/snapshot_3.png) 
+
+4.  Click on **Audit**. Observe a snapshot was created for each VM
+
+    ![](images/snapshot_4.png) 
+
+## Verify Restoration of Snapshot
+
+1.  Click on **Services**.  Select one of the service.
+
+    ![](images/restore_1.png) 
+
+2.  Click on **Open Terminal**
+
+    ![](images/restore_2.png) 
+
+3.  Click on **Proceed**
+
+    ![](images/restore_3.png) 
+
+4.  Make a change.  Create a file.
+
+    ![](images/restore_4.png) 
+
+5.  Click on **Manage**.  Click on **Restore_vm_snapshot**
+
+    ![](images/restore_5.png) 
+
+6.  Select the **Recovery Point**.  Click on **Run**
+
+     ![](images/restore_6.png) 
+
+7. Click on **Audit**.  Observe the following:
+
+    -  Stop the VM and remove the NIC
+    -  Create a VM using the VM snapshot (Recovery Point)
+    -  Delete away the old VM.
+
+    ![](images/restore_7.png) 
+
+8.  Click on **Services**.  Select one of the **Services**.  Click on **Open Terminal**.  
+
+    ![](images/restore_9.png) 
+
+9.  Observe the file was not created.
+
+    ![](images/restore_9.png) 
