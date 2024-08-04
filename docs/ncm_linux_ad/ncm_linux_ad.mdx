@@ -1,5 +1,5 @@
 ---
-title: "Linux Workload: Multi-VM Blueprint"
+title: "Linux Workload: Single-VM Blueprint"
 ---
 
 # Product Configurations:
@@ -11,11 +11,10 @@ title: "Linux Workload: Multi-VM Blueprint"
 
 :::info
 
-Estimated time to complete: **90 minutes**
+Estimated time to complete: **60 minutes**
 
-In this exercise you will create a NCM Self Service Blueprint with T-Shirt sizing (Small, Medium, Large).
-The image (Rocky Linux 9.4), install cloud-init, install packages and join Active Directory (AD) domain.
-  We'll also add a script to remove the computer from the Domain upon deletion.
+In this exercise you will create a NCM Self Service Blueprint.  The image (Rocky Linux 9.4), install cloud-init, 
+install packages and join Active Directory (AD) domain.  We'll also add a script to remove the computer from the Domain upon deletion.
 
 :::
 
@@ -59,6 +58,23 @@ The image (Rocky Linux 9.4), install cloud-init, install packages and join Activ
 
 7.  Check the **Guest Customization**.  Paste the contents inside the Guest Customization box.
 
-    cloud-init.sh
+    ```
+    #cloud-config
+    disable_root: False
+    ssh_enabled: True
+    ssh_pwauth: True
+    users:
+        - name: nutanix
+        passwd: @@{ROCKY 2 Credential.secret}@@
+        chpasswd: { expire: False }
+        ssh-authorized-keys:
+        - @@{ROCKY.public_key}@@
+        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+
+    #cloud-config
+    fqdn: @@{name}@@.@@{domain_name}@@
+    manage_etc_hosts: true
+    hostname: @@{name}@@
+    ```
 
     ![](images/ncm_linux_ad_6.png)
