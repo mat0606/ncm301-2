@@ -44,6 +44,7 @@ module.exports = {
               'what_is_calm/runbook',
               'ncm_marketplace2/ncm_marketplace2',
               'ncm_windows_ad3/ncm_windows_ad3',
+              'ncm_windows_ad3/ncm_windows_day2',
             ],
     },
   ],
