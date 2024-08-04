@@ -59,7 +59,7 @@ We'll also add a script to remove the computer from the Domain upon deletion.
 
 7.  Check the **Guest Customization**.  Paste the contents inside the Guest Customization box.
 
-    ```
+    ```yaml
     #cloud-config
     disable_root: False
     ssh_enabled: True
@@ -378,4 +378,65 @@ System (OS) requires different packges and different steps to join the Active Di
     sudo realm leave @@{Domain_Server}@@.@@{domain_name}@@
     sudo realm list
     ```
+
+## Launch the Blueprint
+
+1.  Click on **Launch Blueprint**
+
+    ![](images/launch_bp_1.png)
+
+2.  Fill in the following:
     
+    - **Application Name**: TenantXYZ-Rocky where XYZ is your initial
+    - **Environment**: You had created the environment earlier
+    
+    ![](images/launch_bp_2.png)
+
+3.  Observe the profile is **default**.  All single VM blueprint has 1 default profile only.
+
+    ![](images/launch_bp_3.png)
+
+4. Observe the VM specification.  Click on **Deploy**
+
+    ![](images/launch_bp_4.png)
+
+5.  Click on **View in Admin Center**
+
+    ![](images/launch_bp_5.png)
+
+6.  The application is in **Provisioning** state.  It will take 3 to 5 mins to complete
+
+    ![](images/launch_bp_6.png)
+
+7.  Click on **Audit**.  Observe the VM was provisioned.  The **Check Log-In** task was successful
+
+    ![](images/launch_bp_7.png)
+
+## Verification
+
+1.  The application is in **Running** state.  Click on **Open Terminal**
+
+    ![](images/launch_bp_8.png)
+
+2.  Click on **Proceed**
+
+    ![](images/verification_1.png)
+
+3.  Key in the following command:
+
+    ```bash
+    nslookup vmname
+    ```
+
+    ![](images/verification_2.png)
+
+4.  Click on **Manage** in the application.  Single VM blueprint allows the installation of NGT for Day 2 Operation
+
+    ![](images/verification_3.png)
+
+5.  Click on **Metrics** to view the CPU, Memory, Storage & Network utilization of the VM
+
+    ![](images/verification_4.png)
+
+
+
