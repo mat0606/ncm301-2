@@ -94,7 +94,7 @@ We'll also add a script to remove the computer from the Domain upon deletion.
 
 11.  Click on **Save**.  
 
-# Create Credential
+## Create Credential
 
 1.  Click on **Advanced Options (Optional)**
 
@@ -171,6 +171,123 @@ We'll also add a script to remove the computer from the Domain upon deletion.
 
     ![](images/add_credential_5.png)
 
+7.  Click on **+ Add Credential**.
 
+8.  Fill in the following:
 
+    - **Name**: Domain Administrator
+    - **Type**: static
+    - **Username**: administrator@ntnxlab.local
+    - **Secret Type**: Password
+    - **Password**: **Get the password from the trainer**
 
+## Configure Advanced Optional
+
+1.  Choose the following:
+
+    - **Credential**: ROCKY
+    - **Check Log-in**: checked
+
+    ![](images/ncm_linux_ad_10.png)
+
+2.  Click on **Save**
+
+## Configure Variables
+
+1.  Click on **App Variable**.
+
+    ![](images/app_variable_1.png)
+
+2. Click on **+ Add Variable**
+
+    ![](images/app_variable_2.png)
+
+3.  Fill in the following:
+
+    - **Name**: Domain_Server
+    - **Data Type**: String
+    - **Value**: WIN-2U3E71T1COI
+
+    ![](images/app_variable_3.png)
+
+4.  Fill in the following:
+
+    - **Name**: Domain_Server_IP
+    - **Data Type**: String
+    - **Value**: **Get the IP address from the trainer**.
+
+5.  Click on **+ Add Variable**.  Fill in the following:
+
+    - **Name**: domain_name
+    - **Data Type**: String
+    - **Value**: ntnxlab.local
+
+## Add Package Install Tasks to join AD
+
+Package tasks are executed after the VM is created and cloud-init executed.  Each flavor of Linux Operating 
+System (OS) requires different packges and different steps to join the Active Directory (AD) domain.
+
+1.  Click on **Edit** in **Package Install**
+
+    ![](images/package_install_1.png)
+
+2.  Click on **Add Task**
+
+    ![](images/package_install_2.png)
+
+3.  Fill in the following:  
+
+    - **Task Name**: Installed OS Packages
+    - **Type**: Execute
+    - **Script Type**: Shell
+    - **Credential**: ROCKY
+    - **Script**:
+
+    ```bash
+    sudo dnf -y update
+    sudo dnf -y install samba-common-tools realmd oddjob oddjob-mkhomedir sssd adcli krb5-workstation
+    ```
+
+    ![](images/package_install_3.png)
+
+4.  Click on **Add Task**
+
+    ![](images/package_install_4.png)
+
+5.  Fill in the following:
+
+    - **Task Name**: Join DNS
+    - **Type**: Execute
+    - **Script Type**: Shell
+    - **Credential**: ROCKY
+    - **Script**:
+
+    ```bash
+    NODE_HOST=@@{name}@@.@@{domain_name}@@
+    export NODE_HOST
+    echo $NODE_HOST
+
+    sudo hostnamectl set-hostname --static $NODE_HOST
+
+    echo "@@{address}@@ @@{name}@@.@@{domain_name}@@ @@{name}@@" | sudo tee -a /etc/hosts
+    echo "@@{Domain_Server_IP}@@ @@{Domain_Server}@@.@@{domain_name}@@ @@{Domain_Server}@@" | sudo tee -a /etc/hosts
+
+    echo "search @@{domain_name}@@" | sudo tee /etc/resolv.conf
+    echo "nameserver @@{Domain_Server_IP}@@" | sudo tee -a /etc/resolv.conf
+    ```
+
+6.  Click on **Add Task**.  Fill in the following:
+
+    - **Task Name**: Validate DNS Lookup
+    - **Type**: Execute
+    - **Script Type**: Shell
+    - **Credential**: ROCKY
+    - **Script**: 
+
+    ```bash
+    sudo dig +short SRV _ldap._tcp.ntnxlab.local
+    sudo dig +short SRV _kerberos._tcp.ntnxlab.local
+    sudo dig +short SRV _kerberos._udp.ntnxlab.local
+    ```
+
+    
