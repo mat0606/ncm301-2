@@ -59,23 +59,23 @@ We'll also add a script to remove the computer from the Domain upon deletion.
 
 7.  Check the **Guest Customization**.  Paste the contents inside the Guest Customization box.
 
-    ```yaml
-    #cloud-config
-    disable_root: False
-    ssh_enabled: True
-    ssh_pwauth: True
-    users:
-        - name: nutanix
-        passwd: @@{ROCKY 2 Credential.secret}@@
-        chpasswd: { expire: False }
-        ssh-authorized-keys:
-        - @@{ROCKY.public_key}@@
-        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ```yaml    |
+#cloud-config
+disable_root: False
+ssh_enabled: True
+ssh_pwauth: True
+users:
+  - name: nutanix
+    passwd: @@{ROCKY 2 Credential.secret}@@
+    chpasswd: { expire: False }
+    ssh-authorized-keys:
+      - @@{ROCKY.public_key}@@
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
 
-    #cloud-config
-    fqdn: @@{name}@@.@@{domain_name}@@
-    manage_etc_hosts: true
-    hostname: @@{name}@@
+#cloud-config
+fqdn: @@{name}@@.@@{domain_name}@@
+manage_etc_hosts: true
+hostname: @@{name}@@
     ```
 
     ![](images/ncm_linux_ad_6.png)
